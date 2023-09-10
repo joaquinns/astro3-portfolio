@@ -1,39 +1,50 @@
---- 
+---
 interface Props {
-	title: string;
+  title: string
 }
+const { title } = Astro.props
 
-const { title } = Astro.props;
+import { ViewTransitions } from 'astro:transitions'
+import Header from '../components/Header.astro'
+import SocialMediaIcons from '../components/SocialMediaIcons.astro'
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description">
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<!doctype html>
+<html lang="en" transition:animate="none">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+  <body
+    class="dark:bg-neutral-950 min-h-screen dark:text-slate-100 overflow-x-hidden transition-colors duration-200 ease-in-out"
+  >
+    <Header />
+    <slot />
+    <footer class="bg-zinc-900 h-24 w-full">
+      <div
+        class="container mx-auto max-w-screen-lg justify-center items-center h-full"
+      >
+        <div class="flex justify-center items-center h-full w-full">
+          <SocialMediaIcons icons={['Github']} size={32} />
+        </div>
+      </div>
+    </footer>
+    <script type="module">
+      const setDarkMode = () => {
+        if (localStorage.theme === 'dark') {
+          document.documentElement.classList.add('dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+        }
+      }
+
+      setDarkMode()
+      document.addEventListener('astro:after-swap', setDarkMode)
+    </script>
+  </body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), rgb(var(--accent-light)) 30%, white 60%);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151A;
-		background-size: 224px;
-	}
-	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
-	}
-</style>
