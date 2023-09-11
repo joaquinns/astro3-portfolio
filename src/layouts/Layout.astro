@@ -36,6 +36,9 @@ import SocialMediaIcons from '../components/SocialMediaIcons.astro'
     </footer>
     <script type="module">
       const setDarkMode = () => {
+        if (localStorage.getItem('theme') === null) {
+          localStorage.setItem('theme', 'dark')
+        }
         if (localStorage.theme === 'dark') {
           document.documentElement.classList.add('dark')
         } else {
