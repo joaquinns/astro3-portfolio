@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js'
@@ -5,10 +6,17 @@ import Stats from 'three/addons/libs/stats.module.js'
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+const renderer = new THREE.WebGLRenderer({
+  antialias: true,
+  alpha: true
+})
+const container = document.getElementById('container')
 renderer.setPixelRatio(window.devicePixelRatio)
-renderer.setSize(800, 600)
-
+if (container !== null) {
+  const responsiveWidth = Math.min(window.innerWidth, 600)
+  const responsiveHeight = Math.min(window.innerHeight, 400)
+  renderer.setSize(responsiveWidth, responsiveHeight, true)
+}
 function init3d(renderer: THREE.WebGLRenderer): void {
   let mixer: THREE.AnimationMixer
   const clock = new THREE.Clock()
@@ -49,7 +57,9 @@ function init3d(renderer: THREE.WebGLRenderer): void {
     function (gltf) {
       const model = gltf.scene
       model.position.set(1, 0, 0)
+
       model.scale.set(0.3, 0.3, 0.3)
+
       scene.add(model)
 
       mixer = new THREE.AnimationMixer(model)
@@ -62,11 +72,27 @@ function init3d(renderer: THREE.WebGLRenderer): void {
     }
   )
 
-  window.onresize = function () {
+  /*   window.onresize = function () {
     camera.aspect = window.innerWidth / window.innerHeight
     camera.updateProjectionMatrix()
 
-    renderer.setSize(800, 600)
+    renderer.setSize(window.innerWidth, window.innerHeight)
+  } */
+
+  window.onresize = function () {
+    if (container !== null) {
+      const newWidth = Math.min(container.clientWidth, 600)
+      const newHeight = Math.min(container.clientHeight, 400)
+      camera.aspect = newWidth / newHeight
+      camera.updateProjectionMatrix()
+      renderer.setSize(newWidth, newHeight, true)
+    } else {
+      const newWidth = Math.min(window.innerWidth, 600)
+      const newHeight = Math.min(window.innerHeight, 400)
+      camera.aspect = newWidth / newHeight
+      camera.updateProjectionMatrix()
+      renderer.setSize(newWidth, newHeight, true)
+    }
   }
 
   function animate(): void {
