@@ -1,0 +1,26 @@
+---
+import Model from '../components/Model.astro'
+import SocialMediaIcons from '../components/SocialMediaIcons.astro'
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title="About me">
+  <main
+    class="container mx-auto max-w-screen-lg px-4 lg:px-0 mt-16 min-h-screen"
+  >
+    <h1 class="text-5xl font-bold">Title</h1>
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos odio libero
+      blanditiis explicabo repellendus ipsam in odit. Esse aut cumque iste
+      perspiciatis ipsa facilis? Accusamus repellat maxime maiores, nemo quia
+      corporis, possimus alias iste quos aliquam cum nam repudiandae non amet.
+      Quos vitae voluptas quasi veritatis quaerat veniam sit ab.
+    </p>
+
+    <Model />
+
+    <div class="flex justify-center items-center gap-4">
+      <SocialMediaIcons icons={['Github', 'Linkedin']} />
+    </div>
+  </main>
+</Layout>
