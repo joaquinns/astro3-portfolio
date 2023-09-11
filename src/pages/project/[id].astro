@@ -1,0 +1,51 @@
+---
+import type { GetStaticPaths } from 'astro'
+import Technologies from '../../components/Technologies.astro'
+import { data, type Data } from '../../data/index'
+import Layout from '../../layouts/Layout.astro'
+
+export const getStaticPaths = (() => {
+  return data.map((detail) => {
+    return {
+      params: { id: detail.id },
+      props: { detail }
+    }
+  })
+}) satisfies GetStaticPaths
+
+const { id } = Astro.params
+const { detail } = Astro.props as { detail: Data }
+---
+
+<Layout title="Project | ">
+  <main
+    class="container mx-auto max-w-screen-lg px-4 lg:px-0 pt-16 min-h-screen"
+  >
+    <section class="flex flex-col lg:flex-row gap-4">
+      <figure class="w-full">
+        <img
+          transition:name={'card' + id}
+          transition:animate="fade"
+          class="w-full h-auto md:h-[400px] mx-auto object-cover object-center rounded-md"
+          src={detail.imgUrl}
+          alt={detail.title + ' image'}
+        />
+      </figure>
+      <div class="flex flex-col items-center w-full gap-4">
+        <h1 class="text-center text-4xl">{detail.title}</h1>
+        <p>
+          {detail.body} Lorem ipsum dolor sit amet consectetur, adipisicing
+          elit. Nobis deleniti quos commodi voluptatem. Eligendi quasi tenetur
+          quo, perferendis nam expedita consequatur! Dicta tempora dolore amet
+          expedita soluta molestias. Consequuntur, quod.
+        </p>
+      </div>
+    </section>
+    <section class="my-4">
+      <h2 class="text-3xl font-bold py-4">Technologies</h2>
+      <div class="flex flex-wrap gap-2 md:gap-3 justify-start items-center">
+        <Technologies techs={detail.technologies} />
+      </div>
+    </section>
+  </main>
+</Layout>
