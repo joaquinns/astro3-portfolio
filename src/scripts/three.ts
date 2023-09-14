@@ -52,7 +52,7 @@ function init3d(renderer: THREE.WebGLRenderer): void {
   const loader = new GLTFLoader()
   loader.setDRACOLoader(dracoLoader)
   loader.load(
-    '../src/models/glasses.glb',
+    '/models/glasses.glb',
     function (gltf) {
       const model = gltf.scene
       model.position.set(1, 0, 0)
