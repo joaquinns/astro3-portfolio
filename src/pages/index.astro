@@ -1,5 +1,6 @@
 ---
 import Card from '../components/Card.astro'
+import Title from '../components/Title.astro'
 import { data as projects } from '../data'
 import Layout from '../layouts/Layout.astro'
 ---
@@ -8,9 +9,9 @@ import Layout from '../layouts/Layout.astro'
   <main
     class="max-w-screen-lg container mx-auto mt-16 px-4 lg:px-0 min-h-screen"
   >
-    <h1 class="text-5xl font-semibold mb-4">Projects</h1>
+    <Title>Projects</Title>
     <section
-      class="grid grid-cols-templateAutoCols gap-4 justify-center items-center"
+      class="grid grid-cols-templateAutoCols gap-4 justify-center items-center pt-4"
     >
       {
         projects.map((project) => (

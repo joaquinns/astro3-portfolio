@@ -2,12 +2,12 @@
 interface Props {
   id: number
   title: string
-  body: string
+  body?: string
   href?: string
   imgUrl: string
 }
 
-const { href, title, body, imgUrl, id } = Astro.props
+const { href, title, imgUrl, id } = Astro.props
 ---
 
 <li class="list-none w-full">
@@ -19,8 +19,11 @@ const { href, title, body, imgUrl, id } = Astro.props
       hover:scale-105 transition-transform ease-in-out duration-300"
       src={imgUrl}
       alt={title + ' image'}
+      loading="lazy"
     />
-    <h2 class="py-2 text-lg font-bold hover:underline p-2">
+    <h2
+      class="font-bold text-transparent text-xl bg-clip-text py-2 bg-gradient-to-r from-cyan-500 to-blue-600"
+    >
       {title}
     </h2>
   </a>

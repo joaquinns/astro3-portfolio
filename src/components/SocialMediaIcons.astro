@@ -3,9 +3,10 @@ import type { SocialMediaTypes } from '../data'
 interface Props {
   icons: SocialMediaTypes[]
   size?: number
+  fill: string
 }
 
-const { icons, size = 64 } = Astro.props
+const { icons, size = 64, fill = 'fill-white' } = Astro.props
 ---
 
 {
@@ -13,11 +14,12 @@ const { icons, size = 64 } = Astro.props
     if (icon === 'Github') {
       return (
         <a
-          href="#"
-          class="p-2 rounded-full hover:bg-gray-800 transition-colors ease-in-out duration-150"
+          target="_blank"
+          href="https://github.com/joaquinns"
+          class={`p-2 rounded-full hover:bg-gray-800 transition-colors ease-in-out duration-150`}
         >
           <svg
-            class="dark:fill-slate-50 fill-black"
+            class="fill-slate-50"
             xmlns="http://www.w3.org/2000/svg"
             width={size}
             height={size}
@@ -37,11 +39,12 @@ const { icons, size = 64 } = Astro.props
     if (icon === 'Linkedin') {
       return (
         <a
-          href="#"
-          class="p-2 rounded-full hover:bg-gray-800 transition-colors ease-in-out duration-150"
+          target="_blank"
+          href="https://www.linkedin.com/in/joaquinnsdev/"
+          class={`p-2 rounded-full hover:bg-gray-800 transition-colors ease-in-out duration-150 `}
         >
           <svg
-            class="dark:fill-slate-50 fill-blue-700"
+            class="fill-slate-50"
             xmlns="http://www.w3.org/2000/svg"
             width={size}
             height={size}

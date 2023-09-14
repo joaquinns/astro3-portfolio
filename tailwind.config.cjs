@@ -4,6 +4,12 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      fontFamily: {
+        custom: ['customFont', 'sans']
+      },
+      colors: {
+        darkcolor: 'rgb(8 11 16/1)'
+      },
       gridTemplateColumns: {
         templateAutoCols: 'repeat(auto-fill, minmax(250px, 1fr))'
       }

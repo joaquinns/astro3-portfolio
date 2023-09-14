@@ -1,6 +1,8 @@
 ---
 import Model from '../components/Model.astro'
+import Paragraph from '../components/Paragraph.astro'
 import SocialMediaIcons from '../components/SocialMediaIcons.astro'
+import Technologies from '../components/Technologies.astro'
 import Layout from '../layouts/Layout.astro'
 ---
 
@@ -8,19 +10,92 @@ import Layout from '../layouts/Layout.astro'
   <main
     class="container mx-auto max-w-screen-lg px-4 lg:px-0 mt-16 min-h-screen"
   >
-    <h1 class="text-5xl font-bold">Title</h1>
-    <p>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos odio libero
-      blanditiis explicabo repellendus ipsam in odit. Esse aut cumque iste
-      perspiciatis ipsa facilis? Accusamus repellat maxime maiores, nemo quia
-      corporis, possimus alias iste quos aliquam cum nam repudiandae non amet.
-      Quos vitae voluptas quasi veritatis quaerat veniam sit ab.
-    </p>
+    <section
+      id="top"
+      class="flex flex-col-reverse lg:flex-row justify-center items-center"
+    >
+      <div class="text-center w-full lg:flex-grow">
+        <h1
+          class="font-bold text-transparent text-4xl md:text-6xl bg-clip-text py-2 bg-gradient-to-r from-purple-800 via-cyan-400 to-purple-800"
+        >
+          Joaquin Suarez
+        </h1>
+        <h2
+          class="font-bold text-transparent text-3xl md:text-4xl bg-clip-text py-2 bg-gradient-to-r from-purple-800 via-cyan-400 to-purple-800"
+        >
+          Frontend Developer
+        </h2>
+        <div class="flex justify-center items-center gap-4">
+          <SocialMediaIcons
+            icons={['Github', 'Linkedin']}
+            fill="dark:fill-white"
+          />
+        </div>
+      </div>
+      <Model />
+    </section>
+    <section class="flex gap-4 flex-col pt-6 md:pt-0">
+      <h2
+        class="font-bold text-transparent text-5xl bg-clip-text py-2 bg-gradient-to-r from-purple-700 to-purple-600"
+      >
+        About
+      </h2>
+      <Paragraph>
+        3+ years of experience as a JavaScript developer, I take pride in having
+        contributed to the success of various projects in the realm of web and
+        mobile applications. My focus revolves around the constant pursuit of
+        new challenges that allow me to grow professionally and further hone my
+        skills.
+      </Paragraph>
 
-    <Model />
+      <Paragraph>
+        Throughout my career, I have encountered and overcome complex technical
+        challenges, showcasing my ability to design, develop, and maintain
+        high-quality applications. My passion for technology and programming
+        drives me to stay up-to-date with the latest industry trends and best
+        practices.
+      </Paragraph>
+    </section>
 
-    <div class="flex justify-center items-center gap-4">
-      <SocialMediaIcons icons={['Github', 'Linkedin']} />
-    </div>
+    <section class="py-4">
+      <h2
+        class="font-bold text-transparent text-3xl md:text-5xl bg-clip-text py-2 bg-gradient-to-r from-purple-800 via-cyan-400 to-purple-800"
+      >
+        Technologies
+      </h2>
+
+      <div
+        class="flex flex-wrap md:flex-row justify-center md:justify-normal items-center gap-2 py-4"
+      >
+        <Technologies
+          techs={[
+            'CSS3',
+            'Docker',
+            'ExpressJs',
+            'HTML5',
+            'JavaScript',
+            'TypeScript',
+            'ReactJs',
+            'NodeJs',
+            'MongoDB',
+            'Postgresql'
+          ]}
+        />
+      </div>
+    </section>
+
+    <section class="py-4">
+      <h2
+        class="font-bold text-transparent text-5xl bg-clip-text py-2 bg-gradient-to-r from-purple-700 to-purple-600"
+      >
+        Contact
+      </h2>
+
+      <Paragraph>
+        You can contact me through my <a href="#top" class="font-bold underline"
+          >social media</a
+        >
+      </Paragraph>
+    </section>
   </main>
 </Layout>
